@@ -11,7 +11,7 @@ const ipc = window.electron.ipcRenderer;
   }
 
   async function caricaSquadre() {
-    const squadre = await ipcRenderer.invoke("squadre:getAll");
+    const squadre = await ipc.invoke("squadre:getAll");
     tabella.innerHTML = "";
     for (const sq of squadre) {
       const tr = document.createElement("tr");
@@ -40,9 +40,9 @@ const ipc = window.electron.ipcRenderer;
 
     if (dati.ID_squadra) {
       dati.ID_squadra = parseInt(dati.ID_squadra);
-      await ipcRenderer.invoke("squadre:update", dati);
+      await ipc.invoke("squadre:update", dati);
     } else {
-      await ipcRenderer.invoke("squadre:insert", dati);
+      await ipc.invoke("squadre:insert", dati);
     }
 
     dialog.close();
@@ -58,13 +58,13 @@ const ipc = window.electron.ipcRenderer;
     const id = parseInt(btn.dataset.id);
     if (btn.classList.contains("elimina")) {
       if (confirm("Eliminare la squadra?")) {
-        await ipcRenderer.invoke("squadre:delete", id);
+        await ipc.invoke("squadre:delete", id);
         caricaSquadre();
       }
     }
 
     if (btn.classList.contains("modifica")) {
-      const squadre = await ipcRenderer.invoke("squadre:getAll");
+      const squadre = await ipc.invoke("squadre:getAll");
       const dati = squadre.find(sq => sq.ID_squadra === id);
       if (dati) {
         form.Nome_squadra.value = dati.Nome_squadra || "";
