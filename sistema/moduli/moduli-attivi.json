@@ -1,0 +1,62 @@
+[
+  {
+    "etichetta": "Menu",
+    "modulo": "menu",
+    "sottovoce": null
+  },
+  {
+    "etichetta": "Dashboard",
+    "modulo": "dashboard",
+    "sottovoce": null
+  },
+  {
+    "etichetta": "Tesserati > Elenco tesserati",
+    "modulo": "tesserati",
+    "sottovoce": "elenco-tesserati"
+  },
+  {
+    "etichetta": "Tesserati > Squadre",
+    "modulo": "tesserati",
+    "sottovoce": "squadre"
+  },
+  {
+    "etichetta": "Tesserati > Federazioni",
+    "modulo": "tesserati",
+    "sottovoce": "federazioni"
+  },
+  {
+    "etichetta": "Tesserati > Categorie e Serie",
+    "modulo": "tesserati",
+    "sottovoce": "categorie-serie"
+  },
+  {
+    "etichetta": "Eventi > Storico eventi",
+    "modulo": "eventi",
+    "sottovoce": "storico-eventi"
+  },
+  {
+    "etichetta": "Eventi > Imposta gara",
+    "modulo": "eventi",
+    "sottovoce": "imposta-gara"
+  },
+  {
+    "etichetta": "Giorno della gara > Imposta gara",
+    "modulo": "eventi",
+    "sottovoce": "imposta-gara"
+  },
+  {
+    "etichetta": "Giorno della gara > Avvia gara",
+    "modulo": "giorno-gara",
+    "sottovoce": "avvia-gara"
+  },
+  {
+    "etichetta": "Giorno della gara > Iscrizioni",
+    "modulo": "giorno-gara",
+    "sottovoce": "iscrizioni"
+  },
+  {
+    "etichetta": "Giorno della gara > Classifiche",
+    "modulo": "giorno-gara",
+    "sottovoce": "classifiche"
+  }
+]

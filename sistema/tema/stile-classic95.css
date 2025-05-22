@@ -1,0 +1,294 @@
+@import url('fonts/fonts.css');
+@import url('cursors/cursors.css');
+@import url('framework.css');
+@import url('framework-grids.css');
+
+/* PALETTE WIN95 */
+:root {
+  --font-ui: "Arial", sans-serif;
+
+  --background-main: #c0c0c0;
+  --background-secondary: #ffffff;
+  --text-color: #000000;
+
+  --highlight-color: #000080;
+  --highlight-hover: #0000ff;
+
+  --menu-heading-color: #000080;
+
+  --sfondo: #c0c0c0;
+  --bordo-chiaro: #ffffff;
+  --bordo-medio: #dfdfdf;
+  --bordo-scuro: #808080;
+  --bordo-ombra: #000000;
+  --testo: #000000;
+
+  --hover: #000080;
+  --hover-brillante: #ffffff;
+  --attivo: #000080;
+}
+
+/* BASE LAYOUT */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-ui);
+  background-color: var(--background-main);
+  color: var(--text-color);
+  overflow: visible;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: visible;
+}
+
+#output {
+  position: relative;
+  z-index: 0;
+  flex-grow: 1;
+  padding: 20px;
+  background-color: var(--background-secondary);
+  box-shadow:
+    inset -1px -1px 0 var(--bordo-scuro),
+    inset 1px 1px 0 var(--bordo-chiaro),
+    2px 2px 0 var(--bordo-scuro),
+    -2px -2px 0 var(--bordo-chiaro);
+  border: 2px outset var(--bordo-medio);
+  font-family: var(--font-ui);
+max-height:100vh;
+min-height:100%;
+}
+
+/* MENU BAR */
+#menu {
+  display: flex;
+  gap: 4px;
+  padding: 2px 0;
+  background-color: var(--sfondo);
+  border-bottom: 2px solid var(--bordo-scuro);
+  white-space: nowrap;
+  overflow: visible;
+  position: relative;
+  z-index: 9999;
+  box-shadow:
+    inset -1px -1px 0 var(--bordo-scuro),
+    inset 1px 1px 0 var(--bordo-chiaro);
+
+}
+
+.pure-menu,
+.pure-menu ul {
+  background-color: var(--sfondo);
+  color: var(--testo);
+  font-family: var(--font-ui);
+padding:0;
+}
+
+/* VOCI PRINCIPALI */
+.pure-menu-item {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0;
+}
+
+.pure-menu-link {
+  display: inline-block;
+  padding: 9px 11px;
+  font-size: 14px;
+  color: var(--testo);
+  background-color: var(--sfondo);
+  text-decoration: none;
+  user-select: none;
+  border: 2px outset var(--bordo-medio);
+  font-family: var(--font-ui);
+}
+
+.pure-menu-link:hover,
+.pure-menu-item:hover > .pure-menu-link {
+  background-color: var(--hover);
+  color: var(--hover-brillante);
+}
+
+.pure-menu-link.attivo {
+  background-color: var(--attivo);
+  color: white;
+  border: 2px inset var(--bordo-scuro);
+}
+
+/* DROPDOWN MENU */
+.pure-menu-item.pure-menu-has-children {
+  position: relative;
+}
+
+.pure-menu-children {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  background-color: var(--background-secondary);
+  border: 2px outset var(--bordo-medio);
+  box-shadow:
+    inset -1px -1px 0 var(--bordo-scuro),
+    inset 1px 1px 0 var(--bordo-chiaro);
+  padding: 2px 0;
+  z-index: 9999;
+}
+
+.pure-menu-has-children.pure-menu-allow-hover:hover > .pure-menu-children {
+  display: block;
+}
+
+.pure-menu-children,
+.pure-menu-children li,
+.pure-menu-children a {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.pure-menu-children .pure-menu-item {
+  width: 100%;
+  display: block;
+}
+
+.pure-menu-children .pure-menu-link {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-family: var(--font-ui);
+  background-color: var(--background-secondary);
+  color: var(--testo);
+  border: none;
+  display: block;
+  text-decoration: none;
+  user-select: none;
+}
+
+.pure-menu-children .pure-menu-link:hover {
+  background-color: var(--highlight-color);
+  color: var(--hover-brillante);
+}
+
+/* NO FOCUS MODERNI */
+.pure-menu-link:focus,
+.pure-menu-link:focus-visible,
+.pure-menu-link:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+}
+
+.win95-window {
+  position: relative;
+  padding-top: 22px; 
+  border: 2px outset var(--bordo-medio);
+  background-color: var(--background-secondary);
+  box-shadow:
+    inset -1px -1px 0 var(--bordo-scuro),
+    inset 1px 1px 0 var(--bordo-chiaro);
+  font-family: var(--font-ui);
+  border-bottom:none;
+}
+.win95-window::before {
+  content: attr(data-title);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background-color: var(--highlight-color);
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  padding-left: 6px;
+  line-height: 20px;
+  text-shadow: 1px 1px var(--bordo-ombra);
+  box-shadow:
+    inset -1px -1px 0 var(--bordo-scuro),
+    inset 1px 1px 0 var(--bordo-chiaro);
+  user-select: none;
+}
+
+/* CONTENUTO FINESTRA */
+.win95-content {
+  padding: 0;
+  margin:0;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  color: var(--text-color);
+}
+
+/* PULSANTI STILE WIN95 */
+.win95-button {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  padding: 4px 12px;
+  background-color: var(--sfondo);
+  border: 2px outset var(--bordo-medio);
+  color: var(--text-color);
+  cursor: pointer;
+  margin: 2px;
+}
+
+.win95-button:active {
+  border: 2px inset var(--bordo-scuro);
+  padding: 5px 11px 3px 13px;
+}
+
+/* SELECT WIN95 */
+select.win95-select {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  padding: 2px;
+  border: 2px inset var(--bordo-scuro);
+  background-color: var(--background-secondary);
+  color: var(--text-color);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='8' height='5' viewBox='0 0 8 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='black' d='M0 0l4 5 4-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  background-size: 8px 5px;
+}
+
+/* SCROLLBAR WIN95 STYLE */
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: var(--background-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--bordo-scuro);
+  border: 2px outset var(--bordo-chiaro);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--highlight-color);
+}
+
+#window-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  z-index: 10000;
+}
+
+#window-controls button {
+  background: transparent;
+  border: none;
+  color: var(--testo);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#window-controls button:hover {
+  color: white;
+}
