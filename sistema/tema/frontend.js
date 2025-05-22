@@ -55,3 +55,18 @@ window.addEventListener('DOMContentLoaded', async () => {
     caricaModulo(dashboard.modulo, dashboard.sottovoce);
   }
 });
+window.addEventListener('DOMContentLoaded', () => {
+  const minBtn = document.getElementById('min-btn');
+  const maxBtn = document.getElementById('max-btn');
+  const closeBtn = document.getElementById('close-btn');
+const titlebar = document.getElementById('custom-titlebar');
+  if (minBtn) minBtn.addEventListener('click', () => window.windowAPI.minimize());
+  if (maxBtn) maxBtn.addEventListener('click', () => window.windowAPI.maximize());
+  if (closeBtn) closeBtn.addEventListener('click', () => window.windowAPI.close());
+});
+
+if (titlebar) {
+  titlebar.addEventListener('dblclick', () => {
+    window.windowAPI.maximize(); // ⬅️ alterna maximize/unmaximize
+  });
+}

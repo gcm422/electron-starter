@@ -21,6 +21,7 @@
   --menu-heading-color: #c678dd;   /* viola chiaro */
 
   --sfondo: #282c34;
+  --sfondo-bio: #08422a;
   --bordo: #3a3f4b;
   --testo: #e6e6e6;
 
@@ -35,9 +36,9 @@ html, body {
   padding: 0;
   height: 100%;
   font-family: var(--font6);
-  background-color: var(--background-main);
+  background-color: transparent;
   color: var(--text-color);
-  overflow: visible;
+  overflow: hidden;
 }
 
 .container {
@@ -52,6 +53,7 @@ html, body {
   flex-grow: 1;
   padding: 20px;
   background-color: var(--background-main);
+  height:100%;
 }
 
 /* MENU */
@@ -66,6 +68,7 @@ html, body {
   overflow: visible;
   position: relative;
   z-index: 9999;
+
 }
 
 .pure-menu,
@@ -175,14 +178,41 @@ html, body {
   outline: none !important;
   box-shadow: none !important;
 }
-#window-controls {
-  position: absolute;
-  top: 0;
-  right: 0;
+#custom-titlebar {
+  -webkit-app-region: drag; /* ✅ permette di trascinare la finestra */
   display: flex;
-  gap: 4px;
-  padding: 6px;
-  z-index: 10000;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 10px;
+  background-color: var(--sfondo-bio);
+  border-bottom: 1px solid var(--bordo);
+  height: 30px;
+  z-index: 9999;
+border-radius: 6px 6px 0 0;
+}
+
+#custom-titlebar button {
+  -webkit-app-region: no-drag; /* ✅ rende cliccabili i bottoni */
+}
+
+.logo-icon {
+  width: 18px;
+  height: 18px;
+  user-select: none;
+  margin-right: 6px;
+}
+
+.title-text {
+  font-size: 13px;
+  color: var(--testo);
+  user-select: none;
+  flex-grow: 1;
+  padding-left: 8px;
+}
+
+#window-controls {
+  display: flex;
+  gap: 6px;
 }
 
 #window-controls button {

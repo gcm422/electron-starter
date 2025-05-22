@@ -10,6 +10,10 @@ function createWindow() {
     width: 1024,
     height: 1024,
     autoHideMenuBar: true,
+      frame: false,
+transparent: true,
+hasShadow: true,
+    icon: path.join(__dirname, 'sistema/tema/favicon.png'),
     webPreferences: {
       preload: path.join(__dirname, 'sistema/tema/renderer.js'),
       nodeIntegration: false,
@@ -25,4 +29,3 @@ app.whenReady().then(createWindow);
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
-

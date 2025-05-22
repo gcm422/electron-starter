@@ -1,3 +1,4 @@
+const { ipcMain, BrowserWindow } = require('electron'); // ✅ Mancava
 const fs = require('fs');
 const path = require('path');
 
@@ -22,3 +23,21 @@ try {
 } catch (err) {
   console.error('[IPC] Errore nel caricamento dei moduli attivi:', err);
 }
+
+// ✅ Handler IPC globali per controlli finestra
+ipcMain.on('window:minimize', () => {
+  const win = BrowserWindow.getFocusedWindow();
+  if (win) win.minimize();
+});
+
+ipcMain.on('window:maximize', () => {
+  const win = BrowserWindow.getFocusedWindow();
+  if (win) {
+    win.isMaximized() ? win.unmaximize() : win.maximize();
+  }
+});
+
+ipcMain.on('window:close', () => {
+  const win = BrowserWindow.getFocusedWindow();
+  if (win) win.close();
+});

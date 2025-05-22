@@ -64,6 +64,7 @@ html, body {
   overflow: visible;
   position: relative;
   z-index: 9999;
+  top: 42px;
 }
 
 .pure-menu,
