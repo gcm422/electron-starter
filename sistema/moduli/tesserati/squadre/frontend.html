@@ -1,0 +1,33 @@
+<section class="modulo">
+    <h2>Gestione Squadre</h2>
+
+    <div class="barra-azioni">
+	<button id="aggiungi-squadra">➕ Nuova squadra</button>
+    </div>
+
+    <table class="tabella" id="tabella-squadre">
+	<thead>
+	    <tr>
+		<th>Nome</th>
+		<th>Sigla</th>
+		<th>Codice</th>
+		<th>Azioni</th>
+	    </tr>
+	</thead>
+	<tbody></tbody>
+    </table>
+
+    <dialog id="modale-squadra">
+	<form method="dialog" id="form-squadra">
+	    <h3 id="titolo-modale">Nuova squadra</h3>
+	    <input type="hidden" name="ID_squadra" />
+	    <label>Nome squadra <input name="Nome_squadra" required /></label>
+	    <label>Sigla <input name="Sigla_squadra" /></label>
+	    <label>Codice <input name="Codice_squadra" /></label>
+	    <menu>
+		<button type="submit">Salva</button>
+		<button type="reset">Annulla</button>
+	    </menu>
+	</form>
+    </dialog>
+</section>

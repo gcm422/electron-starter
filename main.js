@@ -3,6 +3,7 @@ const path = require('path');
 
 // Carica gli handler IPC delle macroaree
 require('./sistema/carica-ipc');
+require('./sistema/moduli/0-startup-workflow/startup.js'); //controlla la persistenza delle tabelle in database
 
 
 function createWindow() {
