@@ -8,9 +8,10 @@
 	<script src="./sistema/tema/frontend.js"></script>
     </head>
     <body>
-<div id="custom-titlebar">
-  <img src="./sistema/tema/favicon.svg" alt="Logo" class="logo-icon">
-  <div class="title-text">Google Search Console API</div>
+	<div id="custom-titlebar">
+	    <!--  <img src="./sistema/tema/favicon.svg" alt="Logo" class="logo-icon"> -->
+	    <img src="./data/img/logo.png" alt="Logo" class="logo-icon">
+	    <div class="title-text">Programma Gare - ACSI Pesaro</div>
   <div id="window-controls">
     <button id="min-btn" title="Minimizza">🗕</button>
     <button id="max-btn" title="Massimizza">🗖</button>
@@ -20,5 +21,54 @@
 <!-- 	<div class="win95-window" data-title="Google Search Console API"></div> -->
 <nav id="menu"></nav>
 <div id="output"></div>
+<div id="sidebar"></div>
+<!-- Overlay errore connessione DB -->
+<div id="overlay-errore-db" style="display: none;">
+    <div id="overlay-box">
+	<h1>❌ Connessione al database non riuscita</h1>
+	<p>Verifica i dati di connessione o modifica l’indirizzo del database principale.</p>
+	<button id="modifica-db-btn" class="pure-button button-atom">⚙️ Modifica connessione DB</button>
+    </div>
+</div>
+
+<style>
+ #overlay-errore-db {
+     position: fixed;
+     top: 0; left: 0;
+     width: 100%; height: 100%;
+     background: rgba(20, 20, 20, 0.95);
+     z-index: 9999;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-family: sans-serif;
+     text-align: center;
+     color: #eee;
+ }
+
+ #overlay-box {
+     background: #2c2c2c;
+     padding: 2em;
+     border: 2px solid #f33;
+     border-radius: 8px;
+     max-width: 420px;
+ }
+
+ #overlay-box h1 {
+     font-size: 1.4em;
+     margin-bottom: 0.5em;
+     color: #ff5;
+ }
+
+ #overlay-box p {
+     font-size: 0.95em;
+     margin-bottom: 1.5em;
+ }
+
+ #overlay-box button {
+     font-size: 0.95em;
+ }
+</style>
+
     </body>
 </html>

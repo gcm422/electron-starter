@@ -58,5 +58,10 @@
     "etichetta": "Giorno della gara > Classifiche",
     "modulo": "giorno-gara",
     "sottovoce": "classifiche"
-  }
+  },
+{
+  "etichetta": "Impostazioni > Base di dati",
+  "modulo": "impostazioni",
+  "sottovoce": "database"
+}
 ]

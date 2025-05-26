@@ -41,3 +41,16 @@ ipcMain.on('window:close', () => {
   const win = BrowserWindow.getFocusedWindow();
   if (win) win.close();
 });
+ipcMain.handle("ping-db", async () => {
+  try {
+    const connect = require("./connect"); // path corretto
+    const conn = await connect();
+    await conn.query("SELECT 1"); // test semplice
+    await conn.end();
+    return true;
+  } catch (err) {
+    console.error("Ping fallito:", err.message);
+    return false;
+  }
+});
+

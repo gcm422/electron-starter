@@ -1,12 +1,13 @@
-const connect = require("../../connect"); // o il percorso corretto
+const connect = require("../../connect");
 const fs = require("fs");
 const path = require("path");
+const { BrowserWindow } = require("electron"); // ✅ aggiunta per inviare segnale errore
 
 (async () => {
   let conn;
 
   try {
-    conn = await connect(); // ✅ ora "await" è dentro un async
+    conn = await connect();
 
     const moduliPath = path.join(__dirname, "..");
     const moduliAttivi = JSON.parse(fs.readFileSync(path.join(moduliPath, "moduli-attivi.json"), "utf-8"));
@@ -43,5 +44,11 @@ const path = require("path");
     await conn.end();
   } catch (err) {
     console.error("❌ Errore di connessione al DB:", err.message);
+
+    // ✅ Invio segnale al renderer per mostrare l'overlay
+    const win = BrowserWindow.getAllWindows()[0];
+    if (win) {
+      win.webContents.send("errore-connessione-db");
+    }
   }
 })();

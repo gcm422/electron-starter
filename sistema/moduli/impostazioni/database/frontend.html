@@ -1,0 +1,57 @@
+<h2 style="margin-bottom: 0.5em; font-size: 1.1em;">Impostazioni Connessione Database</h2>
+<style>
+ .config-blocco { padding: 1px; margin-top:25px;}
+ legend { color: #a6e22e !important; }
+</style>
+
+<form id="form-config-db" class="pure-form pure-form-stacked" style="font-size: 0.8em; padding: 0;">
+    <div class="pure-g">
+
+	<!-- Blocco Database principale -->
+	<div class="pure-u-1 pure-u-md-1-4 config-blocco" style="margin-right:55px;">
+	    <fieldset>
+		<legend>Database Principale</legend>
+
+		<label for="database_host">Host</label>
+		<input type="text" name="database_host" id="database_host" class="pure-input-1" />
+
+		<label for="database_user">User</label>
+		<input type="text" name="database_user" id="database_user" class="pure-input-1" />
+
+		<label for="database_password">Password</label>
+		<input type="password" name="database_password" id="database_password" class="pure-input-1" />
+
+		<label for="database_database">Database</label>
+		<input type="text" name="database_database" id="database_database" class="pure-input-1" />
+	    </fieldset>
+	</div>
+
+	<!-- Blocco Mirror -->
+	<div class="pure-u-1 pure-u-md-1-4 config-blocco">
+	    <fieldset>
+		<legend style="font-size: 1em;">Database Mirror</legend>
+
+		<label for="mirror_host">Host</label>
+		<input type="text" name="mirror_host" id="mirror_host" class="pure-input-1" />
+
+		<label for="mirror_user">User</label>
+		<input type="text" name="mirror_user" id="mirror_user" class="pure-input-1" />
+
+		<label for="mirror_password">Password</label>
+		<input type="password" name="mirror_password" id="mirror_password" class="pure-input-1" />
+
+		<label for="mirror_database">Database</label>
+		<input type="text" name="mirror_database" id="mirror_database" class="pure-input-1" />
+	    </fieldset>
+	</div>
+
+    </div>
+
+    <!-- Pulsante di salvataggio globale -->
+    <div style="margin-top: 1.5em; text-align: left;">
+	<button type="submit" class="pure-button button-atom">
+	    💾 Aggiorna e allinea le basi di dati
+	</button>
+    </div>
+
+</form>
