@@ -11,6 +11,7 @@ if (!nav) {
 
   config.forEach(entry => {
     if (entry.modulo === 'menu') return;
+    if (!entry.etichetta || entry.etichetta.trim() === "") return; // ✅ Salta etichette vuote
 
     const [vocePrincipale, sottovoce] = entry.etichetta.split(' > ');
     if (!mappaMenu[vocePrincipale]) mappaMenu[vocePrincipale] = [];
@@ -98,3 +99,4 @@ if (!nav) {
     });
   }
 }
+

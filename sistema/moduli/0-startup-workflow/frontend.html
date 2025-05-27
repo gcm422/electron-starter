@@ -1,0 +1,30 @@
+<div id="splash" class="splash-container">
+    <img src="./img/enjoy-logo.svg" alt="enjoy" class="splash-logo" />
+    <h2>Programma gare</h2>
+    <p id="splash-status" class="splash-status"></p>
+</div>
+
+<style>
+ .splash-container {
+     background: linear-gradient(to bottom right, #F2F2F2, #CCCCCC);
+     color: #333;
+     font-family: sans-serif;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     height: 100vh;
+     gap: 1em;
+ }
+
+ .splash-logo {
+     max-height: 80px;
+ }
+
+ .splash-status {
+     font-size: 0.95em;
+     font-style: italic;
+     opacity: 0.6;
+     transition: opacity 0.4s;
+ }
+</style>

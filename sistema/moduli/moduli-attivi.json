@@ -63,5 +63,10 @@
   "etichetta": "Impostazioni > Base di dati",
   "modulo": "impostazioni",
   "sottovoce": "database"
+},
+{
+  "etichetta": "",
+  "modulo": "impostazioni",
+  "sottovoce": "logs"
 }
 ]

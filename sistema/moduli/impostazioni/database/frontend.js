@@ -25,7 +25,6 @@
       console.error("Errore in caricaConfig:", err);
     }
   }
-
 form.addEventListener("submit", async e => {
   e.preventDefault();
 
@@ -48,24 +47,30 @@ form.addEventListener("submit", async e => {
     const esito = await ipc.invoke("config-db:salva-e-allinea", nuovoConfig);
     alert(esito || "✅ Configurazione salvata.");
 
-    // ✅ Dopo il salvataggio: verifica se la connessione ora funziona
     const connesso = await ipc.invoke("config-db:test-connessione");
+    const overlay = document.getElementById("overlay-errore-db");
+
+    // 🔁 RESETTA SEMPRE IL FLAG DOPO IL SALVATAGGIO
+    window._overlayInSospeso = false;
+
     if (connesso) {
- const overlay = document.getElementById("overlay-errore-db");
-  if (overlay) overlay.style.display = "none";
-  window._overlayInSospeso = false;
-  window.caricaModulo("dashboard"); // o il modulo desiderato
+      if (overlay) overlay.style.display = "none";
+      window.caricaModulo("dashboard");
     } else {
-       // Riattiva overlay se connessione ancora non ok
-  const overlay = document.getElementById("overlay-errore-db");
-  if (overlay) overlay.style.display = "flex";
-  window._overlayInSospeso = false;
+      if (overlay) overlay.style.display = "flex";
     }
 
   } catch (err) {
-    alert("❌ Errore nel salvataggio o verifica: " + err.message);
+    const overlay = document.getElementById("overlay-errore-db");
+
+    // 🔁 RESETTA SEMPRE IL FLAG DOPO IL SALVATAGGIO FALLITO
+    window._overlayInSospeso = false;
+
+    if (overlay) overlay.style.display = "flex";
+    alert("❌ Errore nel salvataggio o nella verifica: " + err.message);
   }
 });
+
 
   caricaConfig();
 })();

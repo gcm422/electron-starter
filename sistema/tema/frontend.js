@@ -34,45 +34,48 @@ window.addEventListener('DOMContentLoaded', async () => {
   const overlay = document.getElementById('overlay-errore-db');
   const btnModifica = document.getElementById('modifica-db-btn');
 
-  // 🔁 Mostra overlay se segnale da startup/main
   window.electron.ipcRenderer.on("errore-connessione-db", () => {
     if (overlay) overlay.style.display = "flex";
   });
 
-btnModifica.addEventListener('click', () => {
-  window._overlayInSospeso = true; // ✅ disattiva overlay temporaneamente
-  overlay.style.display = 'none';  // ✅ nascondilo
-  window.caricaModulo('impostazioni', 'database');
-});
+  btnModifica.addEventListener('click', () => {
+    window._overlayInSospeso = true;
+    overlay.style.display = 'none';
+    window.caricaModulo('impostazioni', 'database');
+  });
 
-
-  // 🔁 PING PERIODICO (ogni 10s)
   async function avviaMonitorDB() {
+    let consecutiviFalliti = 0;
+
     const check = async () => {
       try {
         const ok = await window.electron.ipcRenderer.invoke("ping-db");
-if (ok) {
-  // ✅ Connessione OK → chiudi overlay e resetta sospensione
-  if (overlay && overlay.style.display !== "none") {
-    overlay.style.display = "none";
-  }
-  window._overlayInSospeso = false;
-} else {
-  // ❌ Connessione NON OK
-  if (!window._overlayInSospeso && overlay && overlay.style.display === "none") {
-    overlay.style.display = "flex";
-  }
-}
-  } catch (err) {
+
+        if (ok) {
+          consecutiviFalliti = 0;
+          if (overlay && overlay.style.display !== "none") {
+            overlay.style.display = "none";
+          }
+          window._overlayInSospeso = false;
+        } else {
+          consecutiviFalliti++;
+          if (consecutiviFalliti >= 1) {
+            if (overlay && overlay.style.display === "none") {
+              overlay.style.display = "flex";
+            }
+            window._overlayInSospeso = false;
+          }
+        }
+      } catch (err) {
         console.warn("Ping fallito:", err.message);
       }
     };
 
-    await check(); // subito all'avvio
-    setInterval(check, 10000); // ogni 10 secondi
+    await check();
+    setInterval(check, 10000);
   }
 
-  await avviaMonitorDB(); // avvia subito
+  await avviaMonitorDB();
 });
 
 window.addEventListener('DOMContentLoaded', async () => {
@@ -93,16 +96,23 @@ window.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  const menuMod = config.find(e => e.modulo === 'menu' && (e.sottovoce === null || e.sottovoce === undefined));
-  if (menuMod) {
-    console.log('[Frontend] Carico modulo menu');
-    caricaModulo(menuMod.modulo, menuMod.sottovoce);
-  }
+  // ✅ Caricamento della splash screen se esiste
+  const splash = config.find(e => e.modulo === '0-startup-workflow');
+  if (splash) {
+    console.log('[Frontend] Carico splash screen iniziale');
+    caricaModulo(splash.modulo, splash.sottovoce);
+  } else {
+    const menuMod = config.find(e => e.modulo === 'menu' && (e.sottovoce === null || e.sottovoce === undefined));
+    if (menuMod) {
+      console.log('[Frontend] Carico modulo menu');
+      caricaModulo(menuMod.modulo, menuMod.sottovoce);
+    }
 
-  const dashboard = config.find(e => e.modulo === 'dashboard' && (e.sottovoce === null || e.sottovoce === undefined));
-  if (dashboard) {
-    console.log('[Frontend] Carico dashboard iniziale');
-    caricaModulo(dashboard.modulo, dashboard.sottovoce);
+    const dashboard = config.find(e => e.modulo === 'dashboard' && (e.sottovoce === null || e.sottovoce === undefined));
+    if (dashboard) {
+      console.log('[Frontend] Carico dashboard iniziale');
+      caricaModulo(dashboard.modulo, dashboard.sottovoce);
+    }
   }
 });
 
